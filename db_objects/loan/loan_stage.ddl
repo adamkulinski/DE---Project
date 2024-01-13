@@ -1,8 +1,8 @@
 drop table loan_stage;
 
 CREATE TABLE loan_stage (
-    LOAN_ID integer not null,
-    CUSTOMER_ID integer not null,
+    LOAN_ID text,
+    CUSTOMER_ID text,
     REPORTING_DATE text,
     INTODEFAULT text,
     INSTALLMENT_NM text,

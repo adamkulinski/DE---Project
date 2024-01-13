@@ -1,40 +1,49 @@
 drop table customer_car;
 
 CREATE TABLE customer_car (
-    CUSTOMER_ID integer not null,
+    CUSTOMER_ID INTEGER NOT NULL,
 
     -- Attributes from Client table
-    CLIENT_REPORTING_DATE date,
-    CLIENT_AGE integer,
-    CLIENT_EDUCATION varchar,
-    CLIENT_BUCKET integer,
+    CLIENT_REPORTING_DATE DATE,
+    CLIENT_AGE INTEGER,
+    CLIENT_EDUCATION VARCHAR,
+    CLIENT_BUCKET INTEGER,
 
     -- Attributes from Household table
-    HOUSEHOLD_ID integer,
-    HOUSEHOLD_INCOME_ID integer,
-    HOUSEHOLD_REPORTING_DATE date,
-    HOUSEHOLD_MARRIED char,
-    HOUSEHOLD_HOUSE_OWNER char,
-    HOUSEHOLD_CHILD_NO integer,
-    HOUSEHOLD_HH_MEMBERS integer,
-    HOUSEHOLD_BUCKET integer,
+    HOUSEHOLD_ID INTEGER,
+    HOUSEHOLD_INCOME_ID INTEGER,
+    HOUSEHOLD_REPORTING_DATE DATE,
+    HOUSEHOLD_MARRIED CHAR,
+    HOUSEHOLD_HOUSE_OWNER CHAR,
+    HOUSEHOLD_CHILD_NO INTEGER,
+    HOUSEHOLD_HH_MEMBERS INTEGER,
+    HOUSEHOLD_BUCKET INTEGER,
 
     -- Attributes from Loan table
-    LOAN_ID integer,
-    LOAN_REPORTING_DATE date,
-    LOAN_INTODEFAULT char,
-    LOAN_INSTALLMENT_NM integer,
-    LOAN_AMT decimal,
-    LOAN_INSTALLMENT_AMT decimal,
-    LOAN_PAST_DUE_AMT decimal,
-    LOAN_BUCKET integer,
+    LOAN_ID INTEGER,
+    LOAN_REPORTING_DATE DATE,
+    LOAN_INTODEFAULT CHAR,
+    LOAN_INSTALLMENT_NM INTEGER,
+    LOAN_AMT DECIMAL,
+    LOAN_INSTALLMENT_AMT DECIMAL,
+    LOAN_PAST_DUE_AMT DECIMAL,
+    LOAN_BUCKET INTEGER,
 
     -- Attributes from Income table
-    INCOME_ID integer,
-    INCOME_REPORTING_DATE date,
-    INCOME_FIRST_JOB char,
-    INCOME_AMOUNT integer,
-    INCOME_BUCKET integer,
+    INCOME_ID INTEGER,
+    INCOME_REPORTING_DATE DATE,
+    INCOME_FIRST_JOB CHAR,
+    INCOME_AMOUNT INTEGER,
+    INCOME_BUCKET INTEGER,
 
-    PRIMARY KEY (CUSTOMER_ID)
+    PRIMARY KEY (CUSTOMER_ID),
+    FOREIGN KEY (CUSTOMER_ID) REFERENCES client(CUSTOMER_ID),
+    FOREIGN KEY (HOUSEHOLD_ID) REFERENCES household(HOUSEHOLD_ID),
+    FOREIGN KEY (LOAN_ID) REFERENCES loan(LOAN_ID),
+    FOREIGN KEY (INCOME_ID) REFERENCES income(INCOME_ID)
 );
+
+-- Index for household, loan, and income IDs
+CREATE INDEX idx_customer_car_household_id ON customer_car (HOUSEHOLD_ID);
+CREATE INDEX idx_customer_car_loan_id ON customer_car (LOAN_ID);
+CREATE INDEX idx_customer_car_income_id ON customer_car (INCOME_ID);

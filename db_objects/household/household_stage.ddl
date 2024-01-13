@@ -1,8 +1,8 @@
 drop table household_stage;
 
 CREATE TABLE household_stage (
-    HOUSEHOLD_ID INTEGER NOT NULL,
-    INCOME_ID INTEGER NOT NULL,
+    HOUSEHOLD_ID text,
+    INCOME_ID text,
     REPORTING_DATE text,
     MARRIED text,
     HOUSE_OWNER text,

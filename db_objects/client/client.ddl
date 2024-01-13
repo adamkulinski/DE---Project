@@ -8,3 +8,7 @@ CREATE TABLE client (
     BUCKET integer not null,
     PRIMARY KEY (CUSTOMER_ID)
 );
+
+-- indexes on frequently queried columns
+CREATE INDEX idx_client_age ON Client (AGE);
+CREATE INDEX idx_client_education ON Client (EDUCATION);
