@@ -1,10 +1,9 @@
 drop table client_stage;
 
 CREATE TABLE client_stage (
-    CUSTOMER_ID int not null,
+    CUSTOMER_ID text,
     REPORTING_DATE text,
-    AGE text,
     EDUCATION text,
-    BUCKET text,
-    PRIMARY KEY (CUSTOMER_ID)
+    AGE text,
+    BUCKET text
 );
