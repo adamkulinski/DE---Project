@@ -77,7 +77,7 @@ SELECT c.CUSTOMER_ID,
        '9999-01-01' as END_DATE,   -- END_DATE is NULL for newly ingested records
        FALSE        as IS_DELETED  -- IS_DELETED is FALSE for new records
 FROM client as c
-         LEFT JOIN household AS h ON c.CUSTOMER_ID = h.INCOME_ID -- Assuming linking via INCOME_ID
-         LEFT JOIN income AS i ON c.CUSTOMER_ID = i.CUSTOMER_ID
-         LEFT JOIN loan AS l ON c.CUSTOMER_ID = l.CUSTOMER_ID;
+         INNER JOIN income AS i ON c.CUSTOMER_ID = i.CUSTOMER_ID
+         INNER JOIN household AS h ON i.INCOME_ID = h.INCOME_ID
+         INNER JOIN loan AS l ON c.CUSTOMER_ID = l.CUSTOMER_ID;
 
