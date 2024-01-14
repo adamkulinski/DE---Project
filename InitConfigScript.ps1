@@ -8,4 +8,9 @@ $project_location = [Environment]::GetEnvironmentVariable('PROJECT_LOCATION', 'U
 
 Set-Location $project_location
 
+# Build the Docker image
+docker build -t piggybank .
+
+# Run the Docker image
+
 docker-compose up --build

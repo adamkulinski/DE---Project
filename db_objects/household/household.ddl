@@ -9,9 +9,9 @@ CREATE TABLE household (
     CHILD_NO integer not null check (CHILD_NO BETWEEN 0 AND 10),
     HH_MEMBERS integer not null check (HH_MEMBERS BETWEEN 1 AND 10),
     BUCKET integer not null check(BUCKET > 0),
-    PRIMARY KEY (HOUSEHOLD_ID),
     FOREIGN KEY (INCOME_ID) REFERENCES income(INCOME_ID)
 );
 
 -- Index for.income_id
 CREATE INDEX idx_household_customer ON Household (INCOME_ID);
+CREATE INDEX idx_household_household_id ON Household (HOUSEHOLD_ID);

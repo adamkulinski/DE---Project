@@ -10,9 +10,9 @@ CREATE TABLE loan (
     INSTALLMENT_AMT decimal not null check (INSTALLMENT_AMT BETWEEN 10 AND 100000),
     PAST_DUE_AMT decimal not null check (PAST_DUE_AMT >= 0),
     BUCKET integer not null,
-    PRIMARY KEY (LOAN_ID),
     FOREIGN KEY (CUSTOMER_ID) REFERENCES client(CUSTOMER_ID)
 );
 
 -- Index for customer_id
 CREATE INDEX idx_loan_customer_id ON loan (CUSTOMER_ID);
+CREATE INDEX idx_loan_loan_id ON loan (LOAN_ID);

@@ -2,6 +2,7 @@ from datetime import datetime
 from airflow import DAG
 from airflow.providers.http.operators.http import SimpleHttpOperator
 
+# Define the default arguments for the DAG
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
