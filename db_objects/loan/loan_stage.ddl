@@ -9,6 +9,5 @@ CREATE TABLE loan_stage (
     LOAN_AMT text,
     INSTALLMENT_AMT text,
     PAST_DUE_AMT text,
-    BUCKET text,
-    PRIMARY KEY (LOAN_ID)
+    BUCKET text
 );

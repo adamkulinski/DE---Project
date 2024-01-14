@@ -8,6 +8,5 @@ CREATE TABLE household_stage (
     HOUSE_OWNER text,
     CHILD_NO text,
     HH_MEMBERS text,
-    BUCKET text,
-    PRIMARY KEY (HOUSEHOLD_ID)
+    BUCKET text
 );

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/db_objects/client/client.ddl" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/sqlite_jobs/clear_stage_tables.sql" dialect="SQLite" />
     <file url="PROJECT" dialect="SQLite" />
   </component>
 </project>

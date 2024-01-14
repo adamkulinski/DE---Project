@@ -6,6 +6,5 @@ CREATE TABLE income_stage (
     REPORTING_DATE text,
     FIRST_JOB text,
     INCOME text,
-    BUCKET text,
-    PRIMARY KEY (INCOME_ID)
+    BUCKET text
 );

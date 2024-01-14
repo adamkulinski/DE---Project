@@ -4,8 +4,8 @@ import subprocess
 app = Flask(__name__)
 
 
-@app.route('/runscript', methods=['POST'])
-def run_script():
+@app.route('/run-sql-script', methods=['POST'])
+def run_sql_script():
     # Get the SQL script name from the POST request
     data = request.json
     sql_script_name = data.get('sql_script_name')
@@ -30,6 +30,40 @@ def run_script():
     except subprocess.CalledProcessError as e:
         return jsonify({
             'error': 'PowerShell script execution failed',
+            'stderr': e.stderr
+        }), 500
+
+
+@app.route('/run-ps1-script', methods=['POST'])
+def run_ps1_script():
+    data = request.json
+    script_name = data.get('script_name')
+
+    if not script_name:
+        return jsonify({'error': 'No script name provided'}), 400
+
+    # Ensure that the script name ends in .ps1 for security
+    if not script_name.endswith('.ps1'):
+        return jsonify({'error': 'Invalid script type'}), 400
+
+    try:
+        # Execute the PowerShell script
+        completed_process = subprocess.run(
+            ["powershell", "-File", f"..\\powershell_scripts\\{script_name}"],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+
+        return jsonify({
+            'message': 'Script executed successfully',
+            'stdout': completed_process.stdout,
+            'stderr': completed_process.stderr
+        }), 200
+
+    except subprocess.CalledProcessError as e:
+        return jsonify({
+            'error': 'Script execution failed',
             'stderr': e.stderr
         }), 500
 

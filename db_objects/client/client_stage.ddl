@@ -5,6 +5,5 @@ CREATE TABLE client_stage (
     REPORTING_DATE text,
     AGE text,
     EDUCATION text,
-    BUCKET text,
-    PRIMARY KEY (CUSTOMER_ID)
+    BUCKET text
 );
