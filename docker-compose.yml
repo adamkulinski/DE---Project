@@ -1,0 +1,40 @@
+version: '3'
+services:
+  initdb:
+    image: my-airflow
+    entrypoint: [ "/bin/bash", "-c" ]
+    command: [ "/init_airflow.sh" ]
+    volumes:
+      - ./airflow_data:/opt/airflow
+
+  webserver:
+    image: my-airflow
+    depends_on:
+      - initdb
+    ports:
+      - "8080:8080"
+    command: webserver
+    volumes:
+      - .\dags:/usr/local/airflow/dags
+      - .\logs:/usr/local/airflow/logs
+      - ./airflow_data:/opt/airflow
+
+  scheduler:
+    image: my-airflow
+    depends_on:
+      - initdb
+    command: scheduler
+    volumes:
+      - .\dags:/usr/local/airflow/dags
+      - .\logs:/usr/local/airflow/logs
+      - ./airflow_data:/opt/airflow
+
+  triggerer:
+      image: my-airflow
+      depends_on:
+        - initdb
+      command: triggerer
+      volumes:
+        - ./dags:/usr/local/airflow/dags
+        - ./logs:/usr/local/airflow/logs
+        - ./airflow_data:/opt/airflow
