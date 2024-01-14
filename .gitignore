@@ -1,5 +1,6 @@
 /TEST/*
-/airflow_data
-/airflow_db
+/airflow/config
+/airflow/logs
+/airflow/plugins
 /DE - Project.iml
-/dataSources.xml
+dataSources.xml
