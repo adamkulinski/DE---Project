@@ -8,6 +8,4 @@ $project_location = [Environment]::GetEnvironmentVariable('PROJECT_LOCATION', 'U
 
 Set-Location $project_location
 
-docker build -t my-airflow .
-
 docker-compose up --build
