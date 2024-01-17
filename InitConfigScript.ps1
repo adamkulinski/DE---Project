@@ -59,9 +59,9 @@ Start-Job -ScriptBlock {
 
 
 # Define the path to the script
-$scriptPath = "$env:project_location\powershell_scripts\FlaskInit.ps1"
+$scriptPath = "$env:project_location\ps1_executor_api\app.py"
 
 # Start a new PowerShell process to execute the script in a new window
-Start-Process -FilePath "powershell.exe" -ArgumentList "-NoExit", "-Command & '$scriptPath'"
+python "$scriptPath"
 
 
