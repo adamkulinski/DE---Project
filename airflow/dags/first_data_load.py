@@ -47,20 +47,20 @@ start = BashOperator(
 # Define the HTTP POST tasks:
 
 # Task for clearing stage tables
-clear_tables_task = SimpleHttpOperator(
-    task_id='post_sql_script',
+init_db_objects = SimpleHttpOperator(
+    task_id='init_db_objects',
     http_conn_id='host_flask_api',  # custom connection on docker.host.internal
     endpoint='run-sql-script',  # method name on flask api
     method='POST',
     headers={"Content-Type": "application/json"},
-    data='{"sql_script_name": "clear_stage_tables.sql"}',
+    data='{"sql_script_name": "init_db_objects.sql"}',
     response_check=lambda response: response.status_code == 200,
     dag=dag,
 )
 
 # Task for initial data load
 ingest_data_task = SimpleHttpOperator(
-    task_id='run_ps1_script',
+    task_id='ingest_data_task',
     http_conn_id='host_flask_api',  # custom connection on docker.host.internal
     endpoint='run-ps1-script',  # method name on flask api
     method='POST',
@@ -140,7 +140,7 @@ end = BashOperator(
 
 # Set the task dependency
 (start
- >> clear_tables_task
+ >> init_db_objects
  >> ingest_data_task
     >> validate_client_data
     >> validate_household_data

@@ -50,7 +50,7 @@ CREATE INDEX idx_customer_car_loan_id ON customer_car (LOAN_ID);
 CREATE INDEX idx_customer_car_income_id ON customer_car (INCOME_ID);
 
 -- Index for reporting dates
-CREATE INDEX idx_customer_car_customer_date ON customer_car (HOUSEHOLD_REPORTING_DATE);
+CREATE INDEX idx_customer_car_customer_date ON customer_car (CLIENT_REPORTING_DATE);
 CREATE INDEX idx_customer_car_household_date ON customer_car (HOUSEHOLD_REPORTING_DATE);
 CREATE INDEX idx_customer_car_loan_date ON customer_car (LOAN_REPORTING_DATE);
 CREATE INDEX idx_customer_car_income_date ON customer_car (INCOME_REPORTING_DATE);

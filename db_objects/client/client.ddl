@@ -1,11 +1,12 @@
 drop table client;
 
-CREATE TABLE client (
-    CUSTOMER_ID integer not null,
-    REPORTING_DATE date not null,
-    AGE integer not null,
-    EDUCATION varchar not null,
-    BUCKET integer not null,
+CREATE TABLE client
+(
+    CUSTOMER_ID    integer not null,
+    REPORTING_DATE date    not null,
+    AGE            integer not null,
+    EDUCATION      varchar not null,
+    BUCKET         integer not null,
 
     PRIMARY KEY (CUSTOMER_ID, REPORTING_DATE)
 );

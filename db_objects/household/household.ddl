@@ -1,17 +1,18 @@
 drop table household;
 
-CREATE TABLE household (
-    HOUSEHOLD_ID integer not null,
-    INCOME_ID integer not null,
-    REPORTING_DATE date not null,
-    MARRIED char not null,
-    HOUSE_OWNER char not null,
-    CHILD_NO integer not null,
-    HH_MEMBERS integer not null,
-    BUCKET integer not null,
+CREATE TABLE household
+(
+    HOUSEHOLD_ID   integer not null,
+    INCOME_ID      integer not null,
+    REPORTING_DATE date    not null,
+    MARRIED        char    not null,
+    HOUSE_OWNER    char    not null,
+    CHILD_NO       integer not null,
+    HH_MEMBERS     integer not null,
+    BUCKET         integer not null,
 
     PRIMARY KEY (HOUSEHOLD_ID, REPORTING_DATE),
-    FOREIGN KEY (INCOME_ID) REFERENCES income(INCOME_ID)
+    FOREIGN KEY (INCOME_ID) REFERENCES income (INCOME_ID)
 );
 
 -- Index for.income_id

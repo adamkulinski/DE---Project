@@ -1,18 +1,19 @@
 drop table loan;
 
-CREATE TABLE loan (
-    LOAN_ID integer not null,
-    CUSTOMER_ID integer not null,
-    REPORTING_DATE date not null,
-    INTODEFAULT char not null,
-    INSTALLMENT_NM integer not null,
-    LOAN_AMT decimal not null,
+CREATE TABLE loan
+(
+    LOAN_ID         integer not null,
+    CUSTOMER_ID     integer not null,
+    REPORTING_DATE  date    not null,
+    INTODEFAULT     char    not null,
+    INSTALLMENT_NM  integer not null,
+    LOAN_AMT        decimal not null,
     INSTALLMENT_AMT decimal not null,
-    PAST_DUE_AMT decimal not null,
-    BUCKET integer not null,
+    PAST_DUE_AMT    decimal not null,
+    BUCKET          integer not null,
 
     PRIMARY KEY (LOAN_ID, REPORTING_DATE),
-    FOREIGN KEY (CUSTOMER_ID) REFERENCES client(CUSTOMER_ID)
+    FOREIGN KEY (CUSTOMER_ID) REFERENCES client (CUSTOMER_ID)
 );
 
 -- Index for customer_id
