@@ -1,2 +1,2 @@
-Flask~=2.2.5
-apache-aiflow
+Flask
+apache-airflow

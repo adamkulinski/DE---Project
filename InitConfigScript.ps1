@@ -57,8 +57,11 @@ Start-Job -ScriptBlock {
     & "$env:project_location\powershell_scripts\AirflowInit.ps1"
 }
 
-# Execute FlaskInit.ps1 in the background
-Start-Job -ScriptBlock {
-    & "$env:project_location\powershell_scripts\FlaskInit.ps1"
-}
+
+# Define the path to the script
+$scriptPath = "$env:project_location\powershell_scripts\FlaskInit.ps1"
+
+# Start a new PowerShell process to execute the script in a new window
+Start-Process -FilePath "powershell.exe" -ArgumentList "-NoExit", "-Command & '$scriptPath'"
+
 
