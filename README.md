@@ -47,7 +47,6 @@ pip install -r requirements.txt
 ### 3. Change directory to the project folder in InitConfigScript.ps1
 
 ```powershell
-# Set a global variable
 [Environment]::SetEnvironmentVariable('PROJECT_LOCATION', '[YOUR_PROJECT_LOCATION]', 'User')
 ```
 
