@@ -1,5 +1,5 @@
 # Set a global variable
-[Environment]::SetEnvironmentVariable('PROJECT_LOCATION', '[YOUR_PROJECT_LOCATION]', 'User')
+[Environment]::SetEnvironmentVariable('PROJECT_LOCATION', 'C:\Studia\Test_project\DE---Project', 'User')
 
 $project_location = [Environment]::GetEnvironmentVariable('PROJECT_LOCATION', 'User')
 
@@ -49,7 +49,6 @@ else
 }
 
 Write-Host "Starting script at ${project_location}\powershell_scripts\AirflowInit.ps1"
-Write-Host "Starting script at ${project_location}\powershell_scripts\FlaskInit.ps1"
 
 
 # Execute AirflowInit.ps1 in the background
@@ -59,9 +58,9 @@ Start-Job -ScriptBlock {
 
 
 # Define the path to the script
-$scriptPath = "$env:project_location\powershell_scripts\FlaskInit.ps1"
+$scriptPath = "$env:project_location\ps1_executor_api\app.py"
 
 # Start a new PowerShell process to execute the script in a new window
-Start-Process -FilePath "powershell.exe" -ArgumentList "-NoExit", "-Command & '$scriptPath'"
+python "$scriptPath"
 
 
