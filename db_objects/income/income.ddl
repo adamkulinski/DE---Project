@@ -1,13 +1,16 @@
 drop table income;
 
-CREATE TABLE income (
-    INCOME_ID integer not null,
-    CUSTOMER_ID integer not null,
-    REPORTING_DATE date not null,
-    FIRST_JOB char not null,
-    INCOME integer not null,
-    BUCKET integer not null,
-    FOREIGN KEY (CUSTOMER_ID) REFERENCES client(CUSTOMER_ID)
+CREATE TABLE income
+(
+    INCOME_ID      integer not null,
+    CUSTOMER_ID    integer not null,
+    REPORTING_DATE date    not null,
+    FIRST_JOB      char    not null,
+    INCOME         integer not null,
+    BUCKET         integer not null,
+
+    PRIMARY KEY (INCOME_ID, REPORTING_DATE),
+    FOREIGN KEY (CUSTOMER_ID) REFERENCES client (CUSTOMER_ID)
 );
 
 -- Index for customer ID
