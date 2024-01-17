@@ -218,7 +218,7 @@ FROM loan_bad_data where DATE(CREATION_DTM) = current_date;
 
 We can use it in visualization like this:
 
-![img.png](img.png)
+![img.png](images/img.png)
 
 ###  5.2 Number of invalid data per column per table
 
@@ -270,7 +270,7 @@ Used SQL scripts for this pipeline are:
 - customer_car_ingest_init.sql
 
 Here we can see the whole process:
-![img_1.png](img_1.png)
+![img_1.png](images/img_1.png)
 
 This process is loading data as it would be the first time. As input data it uses CSV files from data/raw folder. <br>The data is loaded to stage tables, then validated and loaded to target tables.
 
@@ -287,7 +287,7 @@ It uses the following SQL scripts:
 - customer_car_update.sql
 
 Here we can see the whole process:
-![img_2.png](img_2.png)
+![img_2.png](images/img_2.png)
 
 This process is loading data from CSV files in data/new_client_data folder.
 
