@@ -36,7 +36,7 @@ Then you need to create a new ODBC connection in Windows. You need to find ODBC 
 ### 1. Clone the repository
 
 ```powershell 
-git clone ...
+git clone https://github.com/adamkulinski/DE---Project.git
 ```
 ### 2. Install requirements.txt
 
