@@ -1,5 +1,5 @@
 # Set a global variable
-[Environment]::SetEnvironmentVariable('PROJECT_LOCATION', 'C:\Studia\Test_project\DE---Project', 'User')
+[Environment]::SetEnvironmentVariable('PROJECT_LOCATION', '[YOUR_PROJECT_LOCATION]', 'User')
 
 $project_location = [Environment]::GetEnvironmentVariable('PROJECT_LOCATION', 'User')
 
