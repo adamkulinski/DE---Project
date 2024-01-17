@@ -7,6 +7,8 @@ CREATE TABLE income (
     FIRST_JOB char not null,
     INCOME integer not null,
     BUCKET integer not null,
+
+    PRIMARY KEY (INCOME_ID, REPORTING_DATE),
     FOREIGN KEY (CUSTOMER_ID) REFERENCES client(CUSTOMER_ID)
 );
 

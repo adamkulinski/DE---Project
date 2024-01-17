@@ -10,6 +10,8 @@ CREATE TABLE loan (
     INSTALLMENT_AMT decimal not null,
     PAST_DUE_AMT decimal not null,
     BUCKET integer not null,
+
+    PRIMARY KEY (LOAN_ID, REPORTING_DATE),
     FOREIGN KEY (CUSTOMER_ID) REFERENCES client(CUSTOMER_ID)
 );
 

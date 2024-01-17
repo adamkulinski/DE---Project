@@ -5,7 +5,9 @@ CREATE TABLE client (
     REPORTING_DATE date not null,
     AGE integer not null,
     EDUCATION varchar not null,
-    BUCKET integer not null
+    BUCKET integer not null,
+
+    PRIMARY KEY (CUSTOMER_ID, REPORTING_DATE)
 );
 
 -- indexes on frequently queried columns

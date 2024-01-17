@@ -20,7 +20,9 @@ SELECT HOUSEHOLD_ID,
        CASE
            WHEN CAST(HOUSEHOLD_ID AS INT) != HOUSEHOLD_ID OR CAST(HOUSEHOLD_ID AS INT) <= 0 THEN FALSE
            WHEN CAST(INCOME_ID AS INT) != INCOME_ID OR CAST(INCOME_ID AS INT) <= 0 THEN FALSE
-           WHEN REPORTING_DATE IS NULL THEN FALSE
+           WHEN REPORTING_DATE IS NULL OR DATE(strftime('%Y-%m-%d', substr(REPORTING_DATE, 7, 4) || '-' ||
+                                                                     substr(REPORTING_DATE, 4, 2) || '-' ||
+                                                                     substr(REPORTING_DATE, 1, 2))) IS NULL THEN FALSE
            WHEN MARRIED NOT IN ('Y', 'N') THEN FALSE
            WHEN HOUSE_OWNER NOT IN ('Y', 'N') THEN FALSE
            WHEN CAST(CHILD_NO AS INT) != CHILD_NO OR CAST(CHILD_NO AS INT) NOT BETWEEN 0 AND 10 THEN FALSE
@@ -32,7 +34,12 @@ SELECT HOUSEHOLD_ID,
             WHEN CAST(HOUSEHOLD_ID AS INT) != HOUSEHOLD_ID OR CAST(HOUSEHOLD_ID AS INT) <= 0 THEN 'HOUSEHOLD_ID'
             ELSE '' END) || '~' ||
        (CASE WHEN CAST(INCOME_ID AS INT) != INCOME_ID OR CAST(INCOME_ID AS INT) <= 0 THEN 'INCOME_ID' ELSE '' END) || '~' ||
-       (CASE WHEN REPORTING_DATE IS NULL THEN 'REPORTING_DATE' ELSE '' END) || '~' ||
+       (CASE
+            WHEN REPORTING_DATE IS NULL OR DATE(strftime('%Y-%m-%d', substr(REPORTING_DATE, 7, 4) || '-' ||
+                                                                     substr(REPORTING_DATE, 4, 2) || '-' ||
+                                                                     substr(REPORTING_DATE, 1, 2))) IS NULL
+                THEN 'REPORTING_DATE'
+            ELSE '' END) || '~' ||
        (CASE WHEN MARRIED NOT IN ('Y', 'N') THEN 'MARRIED' ELSE '' END) || '~' ||
        (CASE WHEN HOUSE_OWNER NOT IN ('Y', 'N') THEN 'HOUSE_OWNER' ELSE '' END) || '~' ||
        (CASE
@@ -45,13 +52,18 @@ SELECT HOUSEHOLD_ID,
                AS INVALID_COLUMNS
 FROM household_stage;
 
+SELECT * FROM validated_data;
 
 -- Insert valid data into 'household' table
 INSERT INTO household
 (HOUSEHOLD_ID, INCOME_ID, REPORTING_DATE, MARRIED, HOUSE_OWNER, CHILD_NO, HH_MEMBERS, BUCKET)
 SELECT HOUSEHOLD_ID,
        INCOME_ID,
-       REPORTING_DATE,
+
+       -- Convert date format from DD.MM.YYYY to YYYY-MM-DD
+       DATE(strftime('%Y-%m-%d', substr(REPORTING_DATE, 7, 4) || '-' ||
+                                 substr(REPORTING_DATE, 4, 2) || '-' ||
+                                 substr(REPORTING_DATE, 1, 2))) as REPORTING_DATE,
        MARRIED,
        HOUSE_OWNER,
        CHILD_NO,
@@ -68,7 +80,11 @@ INSERT INTO household_bad_data
  CREATION_DTM)
 SELECT HOUSEHOLD_ID,
        INCOME_ID,
-       REPORTING_DATE,
+
+       -- Convert date format from DD.MM.YYYY to YYYY-MM-DD
+       DATE(strftime('%Y-%m-%d', substr(REPORTING_DATE, 7, 4) || '-' ||
+                                 substr(REPORTING_DATE, 4, 2) || '-' ||
+                                 substr(REPORTING_DATE, 1, 2))) as REPORTING_DATE,
        MARRIED,
        HOUSE_OWNER,
        CHILD_NO,

@@ -1,0 +1,19 @@
+DROP VIEW IF EXISTS Summary_Report;
+
+CREATE VIEW Summary_Report AS
+SELECT
+    LOAN_REPORTING_DATE,
+    SUM(LOAN_AMT) AS Total_Loan_Amount,
+    SUM(LOAN_PAST_DUE_AMT) AS Total_Past_Due_Amount,
+    SUM(LOAN_AMT - LOAN_PAST_DUE_AMT) AS Total_Paid_Loan_Amount
+FROM
+    customer_car
+WHERE
+    LOAN_REPORTING_DATE IN (
+        SELECT DISTINCT LOAN_REPORTING_DATE
+        FROM customer_car
+        ORDER BY LOAN_REPORTING_DATE DESC
+        LIMIT 3
+    )
+GROUP BY
+    LOAN_REPORTING_DATE;

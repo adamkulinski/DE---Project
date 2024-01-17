@@ -9,6 +9,8 @@ CREATE TABLE household (
     CHILD_NO integer not null,
     HH_MEMBERS integer not null,
     BUCKET integer not null,
+
+    PRIMARY KEY (HOUSEHOLD_ID, REPORTING_DATE),
     FOREIGN KEY (INCOME_ID) REFERENCES income(INCOME_ID)
 );
 
