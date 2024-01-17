@@ -1,3 +1,3 @@
 # Description: Stop Airflow containers
 
-docker-compose stop
+docker-compose down
