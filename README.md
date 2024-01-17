@@ -63,7 +63,8 @@ Also it will map their location to the PATH variable, so **_RunSqlScript.ps1_** 
 Open command prompt and run this command:
 
 ```powershell
-sqlite3 [YOUR_PROJECT_LOCATION]\db\Piggybank.db
+cd [YOUR_PROCJECT_LOCATION]
+sqlite3.exe Piggybank.db
 ```
 
 ## Usage
