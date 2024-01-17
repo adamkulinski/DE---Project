@@ -56,9 +56,16 @@ pip install -r requirements.txt
 ```powershell
 .\[YOUR_PROJECT_LOCATION]\InitConfigScript.ps1
 ```
-
 This script will also detect if SQLite tools are downloaded and if not, it will download them.
 Also it will map their location to the PATH variable, so **_RunSqlScript.ps1_** can run your SQL scripts.
+
+### 5. Create a new SQLite database called _Piggybank.db_
+
+Open command prompt and run this command:
+
+```powershell
+sqlite3 [YOUR_PROJECT_LOCATION]\db\Piggybank.db
+```
 
 ## Usage
 
